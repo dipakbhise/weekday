@@ -1,5 +1,7 @@
 // common function to call api with parameters like api endpoint, method, payload,additionalHeaders, successfunction which will call after api response
 
+import { BASE_URL } from "./config";
+
 export const fetchApi = async (
   endpoint,
   method = "GET",
