@@ -5,6 +5,10 @@ const nextConfig = {
       },
     
         reactStrictMode: false, // if 'true' it renders every component two times
+
+        images: {
+            domains: ['logo.clearbit.com'], // Image domain where images are hosted or uploaded
+          },
 };
 
 export default nextConfig;
