@@ -43,3 +43,23 @@ export const fetchApi = async (
     throw error;
   }
 };
+
+export const daysAgo =  (date)=> {
+  const today = new Date();
+  const differenceInTime = today.getTime() - date.getTime();
+  const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+  
+  if (differenceInDays === 1) {
+    return '1 day ago';
+  } else if (differenceInDays < 7) {
+    return `${differenceInDays} days ago`;
+  } else if (differenceInDays === 7) {
+    return '1 week ago';
+  } else if (differenceInDays < 30) {
+    return `${Math.floor(differenceInDays / 7)} weeks ago`;
+  } else if (differenceInDays < 365) {
+    return `${Math.floor(differenceInDays / 30)} months ago`;
+  } else {
+    return `${Math.floor(differenceInDays / 365)} years ago`;
+  }
+}
