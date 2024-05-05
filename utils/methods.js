@@ -26,17 +26,18 @@ export const fetchApi = async (
     // fetch is the vanila js function for AJAX calls
     const response = await fetch(url, options);
     if (response.ok) {
+      let data = await response.json();
 
-    // call the success func after api success response 
+      // call the success func after api success response
       if (successFunc) {
-        successFunc();
+        successFunc(data);
       }
+
+      // convert the fetched data into json format and return it
+      return data;
     } else {
       console.error("API request failed");
     }
-
-    // convert the fetched data into json format and return it
-    return response.json();
   } catch (error) {
     console.error("API request failed:", error.message);
     throw error;
