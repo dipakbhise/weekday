@@ -35,6 +35,7 @@ export const roleFilters = [
 ];
 
 export const experienceFilter = [
+  { id: 0, name: 0 },
   { id: 1, name: 1 },
   { id: 2, name: 2 },
   { id: 3, name: 3 },
@@ -54,34 +55,34 @@ export const remoteFilter = [
 ];
 
 export const locationFilter = [
-    { id: 1, name: "Delhi NCR" },
-    { id: 2, name: "Mumbai" },
-    { id: 3, name: "Bangaluru" },
-  ];
+  { id: 1, name: "Delhi NCR" },
+  { id: 2, name: "Mumbai" },
+  { id: 3, name: "Bangalore" },
+  { id: 3, name: "Chennai" },
+];
 
-  export const basepayFilter = [
-    { id: 0, name: 5 },
-    { id: 1, name: 10 },
-    { id: 2, name: 20 },
-    { id: 3, name: 30 },
-    { id: 3, name: 40 },
-    { id: 3, name: 50 },
-    { id: 3, name: 60 },
-    { id: 3, name: 70 },
-    { id: 3, name: 80 },
-    { id: 3, name: 90 },
-    { id: 3, name: 100 },
-    { id: 3, name: 110 },
-    { id: 3, name: 1200 },
-  ];
+export const basepayFilter = [
+  { id: 0, name: 5 },
+  { id: 1, name: 10 },
+  { id: 2, name: 20 },
+  { id: 3, name: 30 },
+  { id: 3, name: 40 },
+  { id: 3, name: 50 },
+  { id: 3, name: 60 },
+  { id: 3, name: 70 },
+  { id: 3, name: 80 },
+  { id: 3, name: 90 },
+  { id: 3, name: 100 },
+  { id: 3, name: 110 },
+  { id: 3, name: 1200 },
+];
 
-  export const employeeFilter = [
-    { id: 1, name: "1-10" },
-    { id: 2, name: "11-20" },
-    { id: 3, name: "21-50" },
-    { id: 4, name: "51-100" },
-    { id: 5, name: "101-200" },
-    { id: 6, name: "201-500" },
-    { id: 7, name: "500+" },
-  ];
-
+export const employeeFilter = [
+  { id: 1, name: "1-10" },
+  { id: 2, name: "11-20" },
+  { id: 3, name: "21-50" },
+  { id: 4, name: "51-100" },
+  { id: 5, name: "101-200" },
+  { id: 6, name: "201-500" },
+  { id: 7, name: "500+" },
+];
