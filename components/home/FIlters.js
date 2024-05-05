@@ -19,6 +19,15 @@ import {
   useTheme,
 } from "@mui/material";
 import { Arrow, CloseIcon, DeleteIcon } from "@/utils/icons";
+import { useAppDispatch } from "@/redux/hooks";
+import {
+    setReduxCompanyName,
+  setReduxSelectedBasePay,
+  setReduxSelectedExperience,
+  setReduxSelectedLocationOptions,
+  setReduxSelectedRemoteOptions,
+  setReduxSelectedRoleOptions,
+} from "@/redux/slices/jobListingSlice";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -40,8 +49,11 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const Filters = () => {
+const Filters = ({ filterJobPosts }) => {
   const theme = useTheme();
+
+  //  to update the job listings data from redux store
+  const dispatch = useAppDispatch();
 
   const [SelectedRoleOptions, setSelectedRoleOptions] = React.useState([]);
   const [RolesOpen, setRolesOpen] = React.useState(false);
@@ -60,23 +72,70 @@ const Filters = () => {
   const [SelectedExperience, setSelectedExperience] = React.useState({});
   const [ExperienceOpen, setExperienceOpen] = React.useState(false);
 
+  const [CompanyName, setCompanyName] = React.useState("");
+
   const onOptionClick = (value, key) => {
     if (key === "role") {
       let selectedoptions = [...SelectedRoleOptions];
       selectedoptions.push(value);
       setSelectedRoleOptions(selectedoptions);
+      dispatch(setReduxSelectedRoleOptions(selectedoptions));
+      filterFunction(
+        selectedoptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
     } else if (key === "remote") {
       let selectedoptions = [...SelectedRemoteOptions];
       selectedoptions.push(value);
       setSelectedRemoteOptions(selectedoptions);
+      dispatch(setReduxSelectedRemoteOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        selectedoptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
     } else if (key === "location") {
       let selectedoptions = [...SelectedLocationOptions];
       selectedoptions.push(value);
       setSelectedLocationOptions(selectedoptions);
+      dispatch(setReduxSelectedLocationOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        selectedoptions,
+        SelectedBasePay,
+        CompanyName
+      );
     } else if (key === "basepay") {
       setSelectedBasePay(value);
+      dispatch(setReduxSelectedBasePay(value));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        SelectedLocationOptions,
+        value,
+        CompanyName
+      );
     } else if (key === "experience") {
       setSelectedExperience(value);
+      dispatch(setReduxSelectedExperience(value));
+      filterFunction(
+        SelectedRoleOptions,
+        value,
+        SelectedRemoteOptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
     }
   };
 
@@ -94,6 +153,25 @@ const Filters = () => {
       selectedoptions.splice(index, 1);
       setSelectedLocationOptions(selectedoptions);
     }
+  };
+
+  const filterFunction = (
+    roleFilter,
+    experienceFilter,
+    remoteFilter,
+    locationFilter,
+    basepayFilter,
+    companyNameFilter
+  ) => {
+    const selectedFilters = {
+      roleFilter: roleFilter, // Example of selected role filter
+      experienceFilter: experienceFilter, // Example of selected experience filter
+      remoteFilter: remoteFilter, // Example of selected remote filter
+      locationFilter: locationFilter, // Example of selected location filter
+      basepayFilter: basepayFilter, // Example of selected basepay filter
+    };
+
+    filterJobPosts(selectedFilters, companyNameFilter);
   };
 
   return (
@@ -509,7 +587,7 @@ const Filters = () => {
                     //   style={getStyles(role.id, role.name, theme)}
                     onClick={() => onOptionClick(role, "basepay")}
                   >
-                    {role.name}
+                    {role.name}$
                   </MenuItem>
                 ))}
               </div>
@@ -596,6 +674,19 @@ const Filters = () => {
             placeholder="Search Company Name"
             variant="outlined"
             size="small"
+            value={CompanyName}
+            onChange={(e) => {
+              setCompanyName(e.target.value);
+              dispatch(setReduxCompanyName(e.target.value));
+              filterFunction(
+                SelectedRoleOptions,
+                SelectedExperience,
+                SelectedRemoteOptions,
+                SelectedLocationOptions,
+                SelectedBasePay,
+                e.target.value
+              );
+            }}
           />
         </div>
       </div>
@@ -605,7 +696,7 @@ const Filters = () => {
           margin: 20px;
           display: flex;
           flex-wrap: wrap;
-          align-items:center;
+          align-items: center;
         }
         .delete-icon {
           display: flex;
