@@ -1,4 +1,8 @@
-import HomePage from "@/components/home/HomePage";
+import dynamic from "next/dynamic";
+
+
+// Import components dynamically it will import only when necessary
+const HomePage = dynamic(() => import("@/components/home/HomePage"));
 
 
 export default function Home() {
