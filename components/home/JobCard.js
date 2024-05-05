@@ -34,9 +34,18 @@ const JobCard = (props) => {
           </div>
 
           <div className="salary">
-            <p>
-              Estimated Salary: {post?.salaryCurrencyCode}{" "}
-              {post?.minJdSalary || 0}- {post?.maxJdSalary || 0} ✅
+            <p className="estimated">
+              Estimated Salary:{" "}
+              {post?.salaryCurrencyCode == "USD"
+                ? "$"
+                : post?.salaryCurrencyCode == "INR"
+                ? "₹"
+                : ""}{""}
+              {post?.minJdSalary || 0}-{post?.maxJdSalary || 0}{post?.salaryCurrencyCode == "USD"
+                ? " USD"
+                : post?.salaryCurrencyCode == "INR"
+                ? " LPA"
+                : ""}{""} ✅
             </p>
           </div>
 
@@ -63,7 +72,9 @@ const JobCard = (props) => {
             </h2>
           </div>
 
-          <button className="apply-btn" onClick={()=>router.push("/apply")}>⚡ Easy Apply</button>
+          <button className="apply-btn" onClick={() => router.push("/apply")}>
+            ⚡ Easy Apply
+          </button>
         </div>
       </div>
 
@@ -146,20 +157,31 @@ const JobCard = (props) => {
           font-size: 1rem;
           line-height: 1.5;
           font-weight: 500;
+          p{
+            margin: 0px;
+          font-size: 1rem;
+          line-height: 1.5;
+          font-weight: 500;
+          color:rgba(0, 0, 0, 0.87);
+            
+          }
         }
 
         .desc {
           height: 250px;
           overflow: hidden;
           white-space: pre-wrap;
-          font-size: 14px;
           mask-image: linear-gradient(
             rgb(255, 255, 255),
             rgb(255, 255, 255),
             rgba(255, 255, 255, 0)
           );
-          color:rgba(0, 0, 0, 0.87);
+          span{
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.87);
           font-weight: 400;
+          }
+
         }
 
         .show-more {
@@ -209,6 +231,12 @@ const JobCard = (props) => {
           font-size: 16px;
           line-height: 1.75;
           cursor: pointer;
+        }
+        .estimated {
+          font-size: 14px;
+          color: rgb(77, 89, 106);
+          line-height: 1.43;
+          margin: 8px 0px;
         }
       `}</style>
     </>
