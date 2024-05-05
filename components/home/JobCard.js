@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Loader from "../common/Loader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -6,6 +6,16 @@ import { daysAgo } from "@/utils/methods";
 
 const JobCard = (props) => {
   const { post, loading } = props;
+
+  const[selectedCard,setSelectedCards]=useState([]);
+
+  const onShowAllClick = (uid)=>{
+    let selectedId = [...selectedCard];
+    let objIndex = selectedId.findIndex((id) => id == uid);
+    objIndex == -1 ? selectedId.push(uid) : selectedId.splice(objIndex, 1);
+    setSelectedCards(selectedId);
+
+  }
 
   const router = useRouter();
 
@@ -55,13 +65,13 @@ const JobCard = (props) => {
               <p>Job Description:</p>
             </div>
 
-            <div className="desc">
+            <div className="desc" style={{height:selectedCard.includes(post.jdUid)&& "auto", maskImage:selectedCard.includes(post.jdUid)&& "unset"}}>
               <span>{post?.jobDetailsFromCompany}</span>
             </div>
           </div>
 
-          <div className="show-more">
-            <span className="show-more-btn">Show More</span>
+          <div className="show-more" onClick={()=>onShowAllClick(post.jdUid)}>
+            <span className="show-more-btn">{selectedCard.includes(post.jdUid)? "Show Less" : "Show More"}</span>
           </div>
 
           <div className="min-exp-title">
@@ -189,7 +199,7 @@ const JobCard = (props) => {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 0.5rem;
+          margin: 1rem 0px;
         }
 
         .show-more-btn {
