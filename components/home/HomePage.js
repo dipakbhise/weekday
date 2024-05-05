@@ -218,7 +218,9 @@ const HomePage = (props) => {
           display: flex;
           align-items: center;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: start;
+          width:95%;
+          margin:auto;
         }
       `}</style>
     </>
