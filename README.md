@@ -4,7 +4,7 @@ https://weekday.techiedipak.com
 ## Getting Started
 
 Steps to run project on local
-1. Clone github repository in your local
+1. Clone github repository in your local using `git clone git@github.com:dipakbhise/weekday.git`
 2. go inside cloned repository
 3. run command `npm i`
 4. run command `npm run dev`
