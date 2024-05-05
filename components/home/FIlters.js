@@ -21,7 +21,7 @@ import {
 import { Arrow, CloseIcon, DeleteIcon } from "@/utils/icons";
 import { useAppDispatch } from "@/redux/hooks";
 import {
-    setReduxCompanyName,
+  setReduxCompanyName,
   setReduxSelectedBasePay,
   setReduxSelectedExperience,
   setReduxSelectedLocationOptions,
@@ -139,19 +139,86 @@ const Filters = ({ filterJobPosts }) => {
     }
   };
 
+  const onMultiDeleteClick = (key) => {
+    if (key === "role") {
+      let selectedoptions = [];
+      setSelectedRoleOptions(selectedoptions);
+      dispatch(setReduxSelectedRoleOptions(selectedoptions));
+      filterFunction(
+        selectedoptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
+    } else if (key === "remote") {
+      let selectedoptions = [];
+      setSelectedRemoteOptions(selectedoptions);
+      dispatch(setReduxSelectedRemoteOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        selectedoptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
+    } else if (key === "location") {
+      let selectedoptions = [];
+      setSelectedLocationOptions(selectedoptions);
+      dispatch(setReduxSelectedLocationOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        selectedoptions,
+        SelectedBasePay,
+        CompanyName
+      );
+    }
+  };
+
   const onRoleDeleteChip = (index, key) => {
     if (key === "role") {
       let selectedoptions = [...SelectedRoleOptions];
       selectedoptions.splice(index, 1);
       setSelectedRoleOptions(selectedoptions);
+      dispatch(setReduxSelectedRoleOptions(selectedoptions));
+      filterFunction(
+        selectedoptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
     } else if (key === "remote") {
       let selectedoptions = [...SelectedRemoteOptions];
       selectedoptions.splice(index, 1);
       setSelectedRemoteOptions(selectedoptions);
+      dispatch(setReduxSelectedRemoteOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        selectedoptions,
+        SelectedLocationOptions,
+        SelectedBasePay,
+        CompanyName
+      );
     } else if (key === "location") {
       let selectedoptions = [...SelectedLocationOptions];
       selectedoptions.splice(index, 1);
       setSelectedLocationOptions(selectedoptions);
+      dispatch(setReduxSelectedLocationOptions(selectedoptions));
+      filterFunction(
+        SelectedRoleOptions,
+        SelectedExperience,
+        SelectedRemoteOptions,
+        selectedoptions,
+        SelectedBasePay,
+        CompanyName
+      );
     }
   };
 
@@ -245,6 +312,9 @@ const Filters = ({ filterJobPosts }) => {
                       className="close-icon"
                       onMouseDown={(event) => {
                         event.stopPropagation();
+                      }}
+                      onClick={() => {
+                        onMultiDeleteClick("role");
                       }}
                     >
                       <CloseIcon />
@@ -365,6 +435,9 @@ const Filters = ({ filterJobPosts }) => {
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
+                      onClick={() => {
+                        onMultiDeleteClick("remote");
+                      }}
                     >
                       <CloseIcon />
                     </div>
@@ -480,6 +553,9 @@ const Filters = ({ filterJobPosts }) => {
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
+                      onClick={() => {
+                        onMultiDeleteClick("location");
+                      }}
                     >
                       <CloseIcon />
                     </div>
@@ -555,7 +631,18 @@ const Filters = ({ filterJobPosts }) => {
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
-                      onClick={() => setSelectedBasePay("")}
+                      onClick={() => {
+                        setSelectedBasePay("");
+                        dispatch(setReduxSelectedBasePay(""));
+                        filterFunction(
+                          SelectedRoleOptions,
+                          SelectedExperience,
+                          SelectedRemoteOptions,
+                          SelectedLocationOptions,
+                          "",
+                          CompanyName
+                        );
+                      }}
                     >
                       <CloseIcon />
                     </div>
@@ -627,7 +714,18 @@ const Filters = ({ filterJobPosts }) => {
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
-                      onClick={() => setSelectedExperience("")}
+                      onClick={() => {
+                        setSelectedExperience("");
+                        dispatch(setReduxSelectedExperience(""));
+                        filterFunction(
+                          SelectedRoleOptions,
+                          "",
+                          SelectedRemoteOptions,
+                          SelectedLocationOptions,
+                          SelectedBasePay,
+                          CompanyName
+                        );
+                      }}
                     >
                       <CloseIcon />
                     </div>
