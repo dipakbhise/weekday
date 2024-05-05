@@ -753,6 +753,7 @@ const Filters = ({ filterJobPosts }) => {
          <div className="label">{jobPostsDetails.ReduxCompanyName ? "Company Name" : ""}</div>
           <TextField
             id="outlined-basic"
+            className="company-name"
             placeholder="Search Company Name"
             variant="outlined"
             size="small"

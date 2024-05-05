@@ -26,14 +26,19 @@ a {
   }
 }
 
-.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+.MuiOutlinedInput-input{
   padding-right: 0px !important;
 }
 
-.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input{
-  height: 22px !important;
-    font-size: 13px !important;
-    min-width: 171px !important;
-    color:#000 !important;
-
+.company-name{
+  .MuiInputBase-input{
+    height: 22px !important;
+      font-size: 13px !important;
+      width: 171px !important;
+      color:#000 !important;
+  
+  }
+  
 }
+
+
