@@ -31,9 +31,9 @@ a {
 }
 
 .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input{
-  height: 22px;
-    font-size: 13px;
-    min-width: 171px;
-    color:#000;
+  height: 22px !important;
+    font-size: 13px !important;
+    min-width: 171px !important;
+    color:#000 !important;
 
 }
