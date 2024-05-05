@@ -29,3 +29,11 @@ a {
 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
   padding-right: 0px !important;
 }
+
+.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input{
+  height: 22px;
+    font-size: 13px;
+    min-width: 171px;
+    color:#000;
+
+}
