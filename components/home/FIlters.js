@@ -19,8 +19,9 @@ import {
   useTheme,
 } from "@mui/material";
 import { Arrow, CloseIcon, DeleteIcon } from "@/utils/icons";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
+    selectJobPostsDetails,
   setReduxCompanyName,
   setReduxSelectedBasePay,
   setReduxSelectedExperience,
@@ -55,86 +56,76 @@ const Filters = ({ filterJobPosts }) => {
   //  to update the job listings data from redux store
   const dispatch = useAppDispatch();
 
-  const [SelectedRoleOptions, setSelectedRoleOptions] = React.useState([]);
+    //  to get the job listings data from redux store
+    const jobPostsDetails = useAppSelector(selectJobPostsDetails);
+
   const [RolesOpen, setRolesOpen] = React.useState(false);
 
-  const [SelectedRemoteOptions, setSelectedRemoteOptions] = React.useState([]);
   const [RemoteOpen, setRemoteOpen] = React.useState(false);
 
-  const [SelectedLocationOptions, setSelectedLocationOptions] = React.useState(
-    []
-  );
   const [LocationOpen, setLocationOpen] = React.useState(false);
 
-  const [SelectedBasePay, setSelectedBasePay] = React.useState({});
   const [BasePayOpen, setBasePayOpen] = React.useState(false);
 
-  const [SelectedExperience, setSelectedExperience] = React.useState({});
   const [ExperienceOpen, setExperienceOpen] = React.useState(false);
 
-  const [CompanyName, setCompanyName] = React.useState("");
 
   const onOptionClick = (value, key) => {
     if (key === "role") {
-      let selectedoptions = [...SelectedRoleOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedRoleOptions];
       selectedoptions.push(value);
-      setSelectedRoleOptions(selectedoptions);
       dispatch(setReduxSelectedRoleOptions(selectedoptions));
       filterFunction(
         selectedoptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "remote") {
-      let selectedoptions = [...SelectedRemoteOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedRemoteOptions];
       selectedoptions.push(value);
-      setSelectedRemoteOptions(selectedoptions);
       dispatch(setReduxSelectedRemoteOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
         selectedoptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "location") {
-      let selectedoptions = [...SelectedLocationOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedLocationOptions];
       selectedoptions.push(value);
-      setSelectedLocationOptions(selectedoptions);
       dispatch(setReduxSelectedLocationOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "basepay") {
-      setSelectedBasePay(value);
       dispatch(setReduxSelectedBasePay(value));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
-        SelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedLocationOptions,
         value,
-        CompanyName
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "experience") {
-      setSelectedExperience(value);
       dispatch(setReduxSelectedExperience(value));
       filterFunction(
-        SelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedRoleOptions,
         value,
-        SelectedRemoteOptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     }
   };
@@ -142,82 +133,76 @@ const Filters = ({ filterJobPosts }) => {
   const onMultiDeleteClick = (key) => {
     if (key === "role") {
       let selectedoptions = [];
-      setSelectedRoleOptions(selectedoptions);
       dispatch(setReduxSelectedRoleOptions(selectedoptions));
       filterFunction(
         selectedoptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "remote") {
       let selectedoptions = [];
-      setSelectedRemoteOptions(selectedoptions);
       dispatch(setReduxSelectedRemoteOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
         selectedoptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "location") {
       let selectedoptions = [];
-      setSelectedLocationOptions(selectedoptions);
       dispatch(setReduxSelectedLocationOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     }
   };
 
   const onRoleDeleteChip = (index, key) => {
     if (key === "role") {
-      let selectedoptions = [...SelectedRoleOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedRoleOptions];
       selectedoptions.splice(index, 1);
-      setSelectedRoleOptions(selectedoptions);
       dispatch(setReduxSelectedRoleOptions(selectedoptions));
       filterFunction(
         selectedoptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "remote") {
-      let selectedoptions = [...SelectedRemoteOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedRemoteOptions];
       selectedoptions.splice(index, 1);
-      setSelectedRemoteOptions(selectedoptions);
       dispatch(setReduxSelectedRemoteOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
         selectedoptions,
-        SelectedLocationOptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedLocationOptions,
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     } else if (key === "location") {
-      let selectedoptions = [...SelectedLocationOptions];
+      let selectedoptions = [...jobPostsDetails.ReduxSelectedLocationOptions];
       selectedoptions.splice(index, 1);
-      setSelectedLocationOptions(selectedoptions);
       dispatch(setReduxSelectedLocationOptions(selectedoptions));
       filterFunction(
-        SelectedRoleOptions,
-        SelectedExperience,
-        SelectedRemoteOptions,
+        jobPostsDetails.ReduxSelectedRoleOptions,
+        jobPostsDetails.ReduxSelectedExperience,
+        jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
-        SelectedBasePay,
-        CompanyName
+        jobPostsDetails.ReduxSelectedBasePay,
+        jobPostsDetails.ReduxCompanyName
       );
     }
   };
@@ -247,11 +232,11 @@ const Filters = ({ filterJobPosts }) => {
         {/* Role Filteer */}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {SelectedRoleOptions.length > 0 && <div>Roles</div>}
+            {jobPostsDetails.ReduxSelectedRoleOptions.length > 0 && <div>Roles</div>}
             <Select
               id="demo-select-small-label"
               multiple
-              value={SelectedRoleOptions}
+              value={jobPostsDetails.ReduxSelectedRoleOptions}
               open={RolesOpen}
               onClose={() => setRolesOpen(false)}
               onOpen={() => setRolesOpen(true)}
@@ -346,7 +331,7 @@ const Filters = ({ filterJobPosts }) => {
                   {filter.roles
                     .filter(
                       (role) =>
-                        !SelectedRoleOptions.some(
+                        !jobPostsDetails.ReduxSelectedRoleOptions.some(
                           (option) => option.id === role.id
                         )
                     )
@@ -369,11 +354,11 @@ const Filters = ({ filterJobPosts }) => {
         {/* Remote Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {SelectedRemoteOptions.length > 0 && <div>Remote</div>}
+            {jobPostsDetails.ReduxSelectedRemoteOptions.length > 0 && <div>Remote</div>}
             <Select
               id="demo-select-small-label"
               multiple
-              value={SelectedRemoteOptions}
+              value={jobPostsDetails.ReduxSelectedRemoteOptions}
               open={RemoteOpen}
               onClose={() => setRemoteOpen(false)}
               onOpen={() => setRemoteOpen(true)}
@@ -465,7 +450,7 @@ const Filters = ({ filterJobPosts }) => {
                 {remoteFilter
                   .filter(
                     (role) =>
-                      !SelectedRemoteOptions.some(
+                      !jobPostsDetails.ReduxSelectedRemoteOptions.some(
                         (option) => option.id === role.id
                       )
                   )
@@ -487,11 +472,11 @@ const Filters = ({ filterJobPosts }) => {
         {/* Locations Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {SelectedRemoteOptions.length > 0 && <div>Location</div>}
+            {jobPostsDetails.ReduxSelectedRemoteOptions.length > 0 && <div>Location</div>}
             <Select
               id="demo-select-small-label"
               multiple
-              value={SelectedLocationOptions}
+              value={jobPostsDetails.ReduxSelectedLocationOptions}
               open={LocationOpen}
               onClose={() => setLocationOpen(false)}
               onOpen={() => setLocationOpen(true)}
@@ -583,7 +568,7 @@ const Filters = ({ filterJobPosts }) => {
                 {locationFilter
                   .filter(
                     (role) =>
-                      !SelectedLocationOptions.some(
+                      !jobPostsDetails.ReduxSelectedLocationOptions.some(
                         (option) => option.id === role.id
                       )
                   )
@@ -605,11 +590,11 @@ const Filters = ({ filterJobPosts }) => {
         {/* Min Base Pay Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {SelectedBasePay.name && <div>Base Pay</div>}
+            {jobPostsDetails.ReduxSelectedBasePay.name && <div>Base Pay</div>}
             <Select
               id="demo-select-small-label"
               //   multiple
-              value={SelectedBasePay}
+              value={jobPostsDetails.ReduxSelectedBasePay}
               open={BasePayOpen}
               onClose={() => setBasePayOpen(false)}
               onOpen={() => setBasePayOpen(true)}
@@ -632,15 +617,14 @@ const Filters = ({ filterJobPosts }) => {
                         event.stopPropagation();
                       }}
                       onClick={() => {
-                        setSelectedBasePay("");
                         dispatch(setReduxSelectedBasePay(""));
                         filterFunction(
-                          SelectedRoleOptions,
-                          SelectedExperience,
-                          SelectedRemoteOptions,
-                          SelectedLocationOptions,
+                          jobPostsDetails.ReduxSelectedRoleOptions,
+                          jobPostsDetails.ReduxSelectedExperience,
+                          jobPostsDetails.ReduxSelectedRemoteOptions,
+                          jobPostsDetails.ReduxSelectedLocationOptions,
                           "",
-                          CompanyName
+                          jobPostsDetails.ReduxCompanyName
                         );
                       }}
                     >
@@ -685,11 +669,11 @@ const Filters = ({ filterJobPosts }) => {
         {/* Experience Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {SelectedExperience.name && <div>Experience</div>}
+            {jobPostsDetails.ReduxSelectedExperience.name && <div>Experience</div>}
             <Select
               id="demo-select-small-label"
               //   multiple
-              value={SelectedExperience}
+              value={jobPostsDetails.ReduxSelectedExperience}
               open={ExperienceOpen}
               onClose={() => setExperienceOpen(false)}
               onOpen={() => setExperienceOpen(true)}
@@ -715,15 +699,14 @@ const Filters = ({ filterJobPosts }) => {
                         event.stopPropagation();
                       }}
                       onClick={() => {
-                        setSelectedExperience("");
                         dispatch(setReduxSelectedExperience(""));
                         filterFunction(
-                          SelectedRoleOptions,
+                          jobPostsDetails.ReduxSelectedRoleOptions,
                           "",
-                          SelectedRemoteOptions,
-                          SelectedLocationOptions,
-                          SelectedBasePay,
-                          CompanyName
+                          jobPostsDetails.ReduxSelectedRemoteOptions,
+                          jobPostsDetails.ReduxSelectedLocationOptions,
+                          jobPostsDetails.ReduxSelectedBasePay,
+                          jobPostsDetails.ReduxCompanyName
                         );
                       }}
                     >
@@ -772,16 +755,15 @@ const Filters = ({ filterJobPosts }) => {
             placeholder="Search Company Name"
             variant="outlined"
             size="small"
-            value={CompanyName}
+            value={jobPostsDetails.ReduxCompanyName}
             onChange={(e) => {
-              setCompanyName(e.target.value);
               dispatch(setReduxCompanyName(e.target.value));
               filterFunction(
-                SelectedRoleOptions,
-                SelectedExperience,
-                SelectedRemoteOptions,
-                SelectedLocationOptions,
-                SelectedBasePay,
+                jobPostsDetails.ReduxSelectedRoleOptions,
+                jobPostsDetails.ReduxSelectedExperience,
+                jobPostsDetails.ReduxSelectedRemoteOptions,
+                jobPostsDetails.ReduxSelectedLocationOptions,
+                jobPostsDetails.ReduxSelectedBasePay,
                 e.target.value
               );
             }}
