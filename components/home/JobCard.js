@@ -2,6 +2,7 @@ import React from "react";
 import Loader from "../common/Loader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { daysAgo } from "@/utils/methods";
 
 const JobCard = (props) => {
   const { post, loading } = props;
@@ -12,7 +13,7 @@ const JobCard = (props) => {
     <>
       <div className="post-card">
         <div className="posted">
-          <span className="posted-text">⏳ Posted 9 days ago </span>
+          <span className="posted-text">⏳ Posted {daysAgo(new Date('2024-05-01'))} </span>
         </div>
 
         <div className="post-body">
