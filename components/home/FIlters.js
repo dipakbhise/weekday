@@ -774,10 +774,13 @@ const Filters = ({ filterJobPosts }) => {
 
       <style jsx>{`
         .filter-container {
-          margin: 20px;
+          {/* margin: 20px; */}
           display: flex;
-          flex-wrap: wrap;
           align-items: center;
+          flex-wrap: wrap;
+          justify-content: start;
+          width:94%;
+          margin:auto;
         }
         .delete-icon {
           display: flex;
