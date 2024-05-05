@@ -1,9 +1,12 @@
 import React from "react";
 import Loader from "../common/Loader";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const JobCard = (props) => {
   const { post, loading } = props;
+
+  const router = useRouter();
 
   return (
     <>
@@ -60,7 +63,7 @@ const JobCard = (props) => {
             </h2>
           </div>
 
-          <button className="apply-btn">⚡ Easy Apply</button>
+          <button className="apply-btn" onClick={()=>router.push("/apply")}>⚡ Easy Apply</button>
         </div>
       </div>
 
