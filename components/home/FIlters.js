@@ -232,7 +232,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Role Filteer */}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {jobPostsDetails.ReduxSelectedRoleOptions.length > 0 && <div>Roles</div>}
+             <div className="label">{jobPostsDetails.ReduxSelectedRoleOptions.length > 0 ? "Roles" :""}</div>
             <Select
               id="demo-select-small-label"
               multiple
@@ -354,7 +354,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Remote Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {jobPostsDetails.ReduxSelectedRemoteOptions.length > 0 && <div>Remote</div>}
+             <div className="label">{jobPostsDetails.ReduxSelectedRemoteOptions.length > 0 ? "Remote": ""}</div>
             <Select
               id="demo-select-small-label"
               multiple
@@ -472,7 +472,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Locations Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {jobPostsDetails.ReduxSelectedRemoteOptions.length > 0 && <div>Location</div>}
+            <div className="label">{jobPostsDetails.ReduxSelectedLocationOptions.length > 0 ? "Location": ""}</div>
             <Select
               id="demo-select-small-label"
               multiple
@@ -590,7 +590,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Min Base Pay Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {jobPostsDetails.ReduxSelectedBasePay.name && <div>Base Pay</div>}
+             <div className="label">{jobPostsDetails.ReduxSelectedBasePay.name ? "Base Pay" : ""}</div>
             <Select
               id="demo-select-small-label"
               //   multiple
@@ -669,7 +669,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Experience Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            {jobPostsDetails.ReduxSelectedExperience.name && <div>Experience</div>}
+           <div className="label"> {jobPostsDetails.ReduxSelectedExperience.name ? "Experience": ""}</div>
             <Select
               id="demo-select-small-label"
               //   multiple
@@ -750,6 +750,7 @@ const Filters = ({ filterJobPosts }) => {
 
         {/* Company Name input*/}
         <div>
+         <div className="label">{jobPostsDetails.ReduxCompanyName ? "Company Name" : ""}</div>
           <TextField
             id="outlined-basic"
             placeholder="Search Company Name"
@@ -836,6 +837,10 @@ const Filters = ({ filterJobPosts }) => {
           margin-right: 5px;
           padding: 0px;
           cursor: pointer;
+        }
+        .label{
+            font-size:13px;
+            min-height:15px;
         }
       `}</style>
     </>
