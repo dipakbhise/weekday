@@ -1,3 +1,17 @@
+## NextJs APP Deployed on AWS amplify you can check on this URL
+https://weekday.techiedipak.com
+
+## Getting Started
+
+Steps to run project on local
+1. Clone github repository in your local
+2. go inside cloned repository
+3. run command `npm i`
+4. run command `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
