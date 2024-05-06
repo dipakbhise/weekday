@@ -14,22 +14,117 @@ export const roleFilters = [
       { id: 9, name: "Dev-Ops" },
       { id: 10, name: "Data Engineer" },
       { id: 11, name: "Data Science" },
-      { id: 12, name: "Data Science" },
+      { id: 12, name: "Computer Vision" },
+      { id: 13, name: "Nlp" },
+      { id: 14, name: "Deep Learning" },
+      { id: 15, name: "Test/QA" },
+      { id: 16, name: "Web3" },
+      { id: 17, name: "Deep Learning" },
+      { id: 18, name: "Sre" },
+      { id: 19, name: "Data Infrastructure" },
     ],
   },
   {
     group: "Design",
     id: 2,
     roles: [
-      { id: 13, name: "Designer" },
-      { id: 14, name: "Design Manager" },
-      //   { id: 13, name: "Frontend" },
-      //   { id: 14, name: "Frontend" },
-      //   { id: 15, name: "Frontend" },
-      //   { id: 16, name: "Frontend" },
-      //   { id: 17, name: "Frontend" },
-      //   { id: 18, name: "Frontend" },
-      //   { id: 19, name: "Frontend" }
+      { id: 20, name: "Designer" },
+      { id: 21, name: "Design Manager" },
+      { id: 22, name: "Graphic Designer" },
+      { id: 23, name: "Product Designer" }
+    ],
+  },
+  {
+    group: "Product",
+    id: 3,
+    roles: [
+      { id: 24, name: "Product Manager" }
+    ],
+  },
+  {
+    group: "Opertaions",
+    id: 2,
+    roles: [
+      { id: 25, name: "Operations Manager" },
+      { id: 26, name: "Founder Staff/Chief Office Staff" }
+    ],
+  },
+  {
+    group: "Sales",
+    id: 4,
+    roles: [
+      { id: 27, name: "Sales Development Representative" },
+      { id: 28, name: "Account Executive" },
+      { id: 29, name: "Account Manager" }
+    ],
+  },
+  {
+    group: "Marketing",
+    id: 5,
+    roles: [
+      { id: 30, name: "Digital Marketing Manager" },
+      { id: 31, name: "Growth Hacker" },
+      { id: 32, name: "Account Manager" },
+      { id: 33, name: "Marketing" },
+      { id: 34, name: "Product Marketing Manager" },
+    ],
+  },
+  {
+    group: "Other Engineering",
+    id: 6,
+    roles: [
+      { id: 35, name: "Mechanical" },
+      { id: 36, name: "Hardware" },
+      { id: 37, name: "Systems" }
+    ],
+  },
+  {
+    group: "Business Analyst",
+    id: 7,
+    roles: [
+      { id: 38, name: "Business Analyst" },
+    ],
+  },
+  {
+    group: "Data Analyst",
+    id: 8,
+    roles: [
+      { id: 39, name: "Data Analyst" },
+    ],
+  },
+  {
+    group: "Project Manager",
+    id: 9,
+    roles: [
+      { id: 40, name: "Project Manager" },
+    ],
+  },
+  {
+    group: "Management",
+    id: 10,
+    roles: [
+      { id: 41, name: "Management" },
+    ],
+  },
+  {
+    group: "Legal",
+    id: 11,
+    roles: [
+      { id: 42, name: "Legal" },
+    ],
+  },
+  {
+    group: "HR",
+    id: 12,
+    roles: [
+      { id: 43, name: "HR" },
+    ],
+  },
+  {
+    group: "Finance",
+    id: 13,
+    roles: [
+      { id: 44, name: "Finance" },
     ],
   },
 ];
