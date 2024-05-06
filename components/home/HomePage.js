@@ -61,7 +61,8 @@ const HomePage = (props) => {
           jobPostsDetails.ReduxSelectedRemoteOptions,
           jobPostsDetails.ReduxSelectedLocationOptions,
           jobPostsDetails.ReduxSelectedBasePay,
-          jobPostsDetails.ReduxCompanyName
+          jobPostsDetails.ReduxCompanyName,
+          jobPostsDetails.ReduxSelectedCurrencyOptions
         );
       setLoading(false);
       console.log("jobPostsDetails.jobPosts", jobPostsDetails.jobPosts.length);
@@ -102,7 +103,8 @@ const HomePage = (props) => {
     jobPostsDetails.ReduxSelectedLocationOptions,
     jobPostsDetails.ReduxSelectedExperience,
     jobPostsDetails.ReduxSelectedBasePay,
-    jobPostsDetails.ReduxCompanyName
+    jobPostsDetails.ReduxCompanyName,
+    jobPostsDetails.ReduxSelectedCurrencyOptions,
   ]);
 
   // Define a function to filter the job posts
@@ -134,6 +136,15 @@ const HomePage = (props) => {
             location.name.toLowerCase() === jobPost.location.toLowerCase()
         );
 
+      // Check currency filter
+      const currencyMatch =
+        selectedFilters.currencyFilter.length === 0 ||
+        selectedFilters.currencyFilter.some(
+          (currency) =>
+            currency.name.toLowerCase() ===
+            jobPost.salaryCurrencyCode.toLowerCase()
+        );
+
       // Check company name filter
       const companyMatch =
         companyNameFilter === "" ||
@@ -141,12 +152,11 @@ const HomePage = (props) => {
           .toLowerCase()
           .includes(companyNameFilter.toLowerCase());
 
-
-    // Check experience filter
-    const experienceMatch = !selectedFilters.experienceFilter.name || 
-      (Number(selectedFilters.experienceFilter.name) >= jobPost.minExp && 
-       Number(selectedFilters.experienceFilter.name) <= jobPost.maxExp);
-
+      // Check experience filter
+      const experienceMatch =
+        !selectedFilters.experienceFilter.name ||
+        (Number(selectedFilters.experienceFilter.name) >= jobPost.minExp &&
+          Number(selectedFilters.experienceFilter.name) <= jobPost.maxExp);
 
       // Check basepay filter
       const basepayMatch =
@@ -160,7 +170,8 @@ const HomePage = (props) => {
         locationMatch &&
         companyMatch &&
         experienceMatch &&
-        basepayMatch
+        basepayMatch &&
+        currencyMatch
       );
     });
 
@@ -219,8 +230,8 @@ const HomePage = (props) => {
           align-items: center;
           flex-wrap: wrap;
           justify-content: start;
-          width:95%;
-          margin:auto;
+          width: 95%;
+          margin: auto;
         }
       `}</style>
     </>
