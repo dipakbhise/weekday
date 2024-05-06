@@ -9,6 +9,7 @@ const initialState = {
   ReduxSelectedRoleOptions:[],
   ReduxSelectedRemoteOptions:[],
   ReduxSelectedLocationOptions:[],
+  ReduxSelectedCurrencyOptions:[],
   ReduxSelectedBasePay:{},
   ReduxSelectedExperience:{},
   ReduxCompanyName:""
@@ -38,6 +39,9 @@ export const jobListingSlice = createSlice({
     setReduxSelectedLocationOptions(state, action) {
       state.ReduxSelectedLocationOptions = [...action.payload];
     },
+    setReduxSelectedCurrencyOptions(state, action) {
+      state.ReduxSelectedCurrencyOptions = [...action.payload];
+    },
     setReduxSelectedBasePay(state, action) {
       state.ReduxSelectedBasePay = action.payload;
     },
@@ -51,6 +55,6 @@ export const jobListingSlice = createSlice({
   },
 });
 
-export const { setJobPostsDetails,setFilteredJobPosts,setReduxSelectedRoleOptions,setReduxSelectedRemoteOptions,setReduxSelectedLocationOptions,setReduxSelectedBasePay,setReduxSelectedExperience,setReduxCompanyName } = jobListingSlice.actions; // export actions
+export const { setJobPostsDetails,setFilteredJobPosts,setReduxSelectedRoleOptions,setReduxSelectedRemoteOptions,setReduxSelectedLocationOptions,setReduxSelectedBasePay,setReduxSelectedExperience,setReduxCompanyName, setReduxSelectedCurrencyOptions } = jobListingSlice.actions; // export actions
 export const selectJobPostsDetails = (state) => state.jobListing; // directly written useSelector's callback here and exported it. 'auth' is an name of all reducers of authSlice
 export default jobListingSlice.reducer; // exporting all reducers
