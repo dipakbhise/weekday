@@ -188,7 +188,9 @@ const HomePage = (props) => {
     remoteFilter = [],
     locationFilter = [],
     basepayFilter = {},
-    companyNameFilter = ""
+    companyNameFilter = "",
+    currencyFilter=[]
+
   ) => {
     const selectedFilters = {
       roleFilter: roleFilter, // Example of selected role filter
@@ -196,6 +198,7 @@ const HomePage = (props) => {
       remoteFilter: remoteFilter, // Example of selected remote filter
       locationFilter: locationFilter, // Example of selected location filter
       basepayFilter: basepayFilter, // Example of selected basepay filter
+      currencyFilter:currencyFilter
     };
 
     filterJobPosts(selectedFilters, companyNameFilter);
