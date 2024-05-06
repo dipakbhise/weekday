@@ -38,7 +38,8 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      fontSize: "14px",
+    //   width: 250,
     },
   },
 };
@@ -843,7 +844,7 @@ const Filters = ({ filterJobPosts }) => {
         {/* Experience Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-           <div className="label"> {jobPostsDetails.ReduxSelectedExperience.name ? "Experience": ""}</div>
+           <div className="label"> {jobPostsDetails.ReduxSelectedExperience.name || jobPostsDetails.ReduxSelectedExperience.name == 0  ? "Experience": ""}</div>
             <Select
               id="demo-select-small-label"
               //   multiple
@@ -864,9 +865,9 @@ const Filters = ({ filterJobPosts }) => {
               renderValue={(selected) => (
                 <Box display={"flex"} justifyContent={"end"}>
                   <div className="placeholder">
-                    {selected.name ? selected.name : "Experience"}
+                    {selected.name || jobPostsDetails.ReduxSelectedExperience.name == 0  ? selected.name : "Experience"}
                   </div>
-                  {selected.name && (
+                  {(selected.name || jobPostsDetails.ReduxSelectedExperience.name == 0) && (
                     <div
                       className="close-icon"
                       onMouseDown={(event) => {
@@ -976,6 +977,9 @@ const Filters = ({ filterJobPosts }) => {
           height: 100%;
           align-items: center;
           margin: 0px;
+          width:100%;
+          justify-content: end;
+          margin-top:1px;
 
           svg {
             color: rgb(204, 204, 204);
