@@ -114,12 +114,12 @@ const JobCard = (props) => {
           border-radius: 10px;
           border: 1px solid rgb(230, 230, 230);
           max-width: 109px;
-          margin: 5px;
+          margin: 15px;
         }
 
         .posted-text {
           font-size: 9px;
-          font-weight: 400;
+          font-weight: 300;
         }
 
         .post-body {
@@ -139,7 +139,7 @@ const JobCard = (props) => {
 
         .location {
           font-size: 11px;
-          font-weight: 500;
+          font-weight: 400;
           margin-top: 5px;
         }
 
@@ -147,13 +147,13 @@ const JobCard = (props) => {
           h2 {
             font-size: 14px;
             line-height: 1.5;
-            font-weight: 400;
+            font-weight: 300;
           }
         }
 
         .name {
           font-size: 13px;
-          font-weight: 600;
+          font-weight: 500;
           letter-spacing: 1px;
           margin-bottom: 3px;
           color: #8b8b8b;
@@ -167,12 +167,12 @@ const JobCard = (props) => {
           margin: 0px;
           font-size: 1rem;
           line-height: 1.5;
-          font-weight: 500;
+          font-weight: 300;
           p{
             margin: 0px;
           font-size: 1rem;
           line-height: 1.5;
-          font-weight: 500;
+          font-weight: 300;
           color:rgba(0, 0, 0, 0.87);
             
           }
@@ -190,7 +190,7 @@ const JobCard = (props) => {
           span{
           font-size: 14px;
           color: rgba(0, 0, 0, 0.87);
-          font-weight: 400;
+          font-weight: 300;
           }
 
         }
@@ -207,14 +207,14 @@ const JobCard = (props) => {
           color: #4943da;
           text-decoration: none;
           font-size: 14px !important;
-          font-weight: 400 !important;
+          font-weight: 300 !important;
         }
 
         .min-exp-title {
           margin-top: 10px;
           h3 {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1px;
             margin-bottom: 3px;
             color: #8b8b8b;
@@ -225,7 +225,7 @@ const JobCard = (props) => {
           h2 {
             font-size: 14px;
             line-height: 1.5;
-            font-weight: 400;
+            font-weight: 300;
           }
         }
 
@@ -233,7 +233,7 @@ const JobCard = (props) => {
           width: 100%;
           background-color: rgb(85, 239, 196);
           color: rgb(0, 0, 0);
-          font-weight: 500;
+          font-weight: 300;
           padding: 8px 18px;
           border-radius: 8px;
           margin-top: 13px;
