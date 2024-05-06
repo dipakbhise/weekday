@@ -77,6 +77,11 @@ export const basepayFilter = [
   { id: 3, name: 1200 },
 ];
 
+export const currencyFilter = [
+    { id: 1, name: "USD" },
+    { id: 2, name: "INR" }
+  ];
+
 export const employeeFilter = [
   { id: 1, name: "1-10" },
   { id: 2, name: "11-20" },
