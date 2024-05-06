@@ -1,5 +1,6 @@
 import {
   basepayFilter,
+  currencyFilter,
   experienceFilter,
   locationFilter,
   remoteFilter,
@@ -24,6 +25,7 @@ import {
     selectJobPostsDetails,
   setReduxCompanyName,
   setReduxSelectedBasePay,
+  setReduxSelectedCurrencyOptions,
   setReduxSelectedExperience,
   setReduxSelectedLocationOptions,
   setReduxSelectedRemoteOptions,
@@ -63,6 +65,8 @@ const Filters = ({ filterJobPosts }) => {
 
   const [RemoteOpen, setRemoteOpen] = React.useState(false);
 
+  const[CurrencyOpen,setCurrencyOpen]= React.useState(false);
+
   const [LocationOpen, setLocationOpen] = React.useState(false);
 
   const [BasePayOpen, setBasePayOpen] = React.useState(false);
@@ -81,7 +85,8 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "remote") {
       let selectedoptions = [...jobPostsDetails.ReduxSelectedRemoteOptions];
@@ -93,7 +98,8 @@ const Filters = ({ filterJobPosts }) => {
         selectedoptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "location") {
       let selectedoptions = [...jobPostsDetails.ReduxSelectedLocationOptions];
@@ -105,9 +111,23 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
-    } else if (key === "basepay") {
+    }else if (key === "currency") {
+        let selectedoptions = [...jobPostsDetails.ReduxSelectedCurrencyOptions];
+        selectedoptions.push(value);
+        dispatch(setReduxSelectedCurrencyOptions(selectedoptions));
+        filterFunction(
+          jobPostsDetails.ReduxSelectedRoleOptions,
+          jobPostsDetails.ReduxSelectedExperience,
+          jobPostsDetails.ReduxSelectedRemoteOptions,
+          jobPostsDetails.ReduxSelectedLocationOptions,
+          jobPostsDetails.ReduxSelectedBasePay,
+          jobPostsDetails.ReduxCompanyName,
+          selectedoptions
+        );
+      } else if (key === "basepay") {
       dispatch(setReduxSelectedBasePay(value));
       filterFunction(
         jobPostsDetails.ReduxSelectedRoleOptions,
@@ -115,7 +135,8 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         value,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "experience") {
       dispatch(setReduxSelectedExperience(value));
@@ -125,7 +146,8 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     }
   };
@@ -140,7 +162,8 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "remote") {
       let selectedoptions = [];
@@ -151,7 +174,8 @@ const Filters = ({ filterJobPosts }) => {
         selectedoptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "location") {
       let selectedoptions = [];
@@ -162,9 +186,22 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
-    }
+    }else if (key === "currency") {
+        let selectedoptions = [];
+        dispatch(setReduxSelectedCurrencyOptions(selectedoptions));
+        filterFunction(
+          jobPostsDetails.ReduxSelectedRoleOptions,
+          jobPostsDetails.ReduxSelectedExperience,
+          jobPostsDetails.ReduxSelectedRemoteOptions,
+          jobPostsDetails.ReduxSelectedLocationOptions,
+          jobPostsDetails.ReduxSelectedBasePay,
+          jobPostsDetails.ReduxCompanyName,
+          selectedoptions
+        );
+      }
   };
 
   const onRoleDeleteChip = (index, key) => {
@@ -178,7 +215,8 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "remote") {
       let selectedoptions = [...jobPostsDetails.ReduxSelectedRemoteOptions];
@@ -190,7 +228,8 @@ const Filters = ({ filterJobPosts }) => {
         selectedoptions,
         jobPostsDetails.ReduxSelectedLocationOptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
     } else if (key === "location") {
       let selectedoptions = [...jobPostsDetails.ReduxSelectedLocationOptions];
@@ -202,9 +241,23 @@ const Filters = ({ filterJobPosts }) => {
         jobPostsDetails.ReduxSelectedRemoteOptions,
         selectedoptions,
         jobPostsDetails.ReduxSelectedBasePay,
-        jobPostsDetails.ReduxCompanyName
+        jobPostsDetails.ReduxCompanyName,
+        jobPostsDetails.ReduxSelectedCurrencyOptions
       );
-    }
+    }else if (key === "currency") {
+        let selectedoptions = [...jobPostsDetails.ReduxSelectedCurrencyOptions];
+        selectedoptions.splice(index, 1);
+        dispatch(setReduxSelectedCurrencyOptions(selectedoptions));
+        filterFunction(
+          jobPostsDetails.ReduxSelectedRoleOptions,
+          jobPostsDetails.ReduxSelectedExperience,
+          jobPostsDetails.ReduxSelectedRemoteOptions,
+          jobPostsDetails.ReduxSelectedLocationOptions,
+          jobPostsDetails.ReduxSelectedBasePay,
+          jobPostsDetails.ReduxCompanyName,
+          selectedoptions
+        );
+      }
   };
 
   const filterFunction = (
@@ -213,14 +266,16 @@ const Filters = ({ filterJobPosts }) => {
     remoteFilter,
     locationFilter,
     basepayFilter,
-    companyNameFilter
+    companyNameFilter,
+    currencyFilter,
   ) => {
     const selectedFilters = {
-      roleFilter: roleFilter, // Example of selected role filter
-      experienceFilter: experienceFilter, // Example of selected experience filter
-      remoteFilter: remoteFilter, // Example of selected remote filter
-      locationFilter: locationFilter, // Example of selected location filter
-      basepayFilter: basepayFilter, // Example of selected basepay filter
+      roleFilter: roleFilter, // selected role filter
+      experienceFilter: experienceFilter, // selected experience filter
+      remoteFilter: remoteFilter, // selected remote filter
+      locationFilter: locationFilter, // selected location filter
+      basepayFilter: basepayFilter, // selected basepay filter
+      currencyFilter: currencyFilter,
     };
 
     filterJobPosts(selectedFilters, companyNameFilter);
@@ -587,6 +642,124 @@ const Filters = ({ filterJobPosts }) => {
           </FormControl>
         </div>
 
+                {/* Currency Filteer Start*/}
+                <div>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <div className="label">{jobPostsDetails.ReduxSelectedCurrencyOptions.length > 0 ? "Currency": ""}</div>
+            <Select
+              id="demo-select-small-label"
+              multiple
+              value={jobPostsDetails.ReduxSelectedCurrencyOptions}
+              open={CurrencyOpen}
+              onClose={() => setCurrencyOpen(false)}
+              onOpen={() => setCurrencyOpen(true)}
+              IconComponent={() => (
+                <>
+                  <div className="arrow" onClick={() => setCurrencyOpen(true)}>
+                    <Arrow />
+                  </div>
+                </>
+              )}
+              renderValue={(selected) => (
+                <Box display={"flex"} justifyContent={"end"}>
+                  {selected.length > 0 ? (
+                    selected.map((value, index) => (
+                      <Stack
+                        direction="row"
+                        spacing={2}
+                        key={index}
+                        onClick={() => console.log("hi click")}
+                      >
+                        <Chip
+                          onClick={() => console.log("hi click")}
+                          size="small"
+                          sx={{
+                            height: "auto",
+                            "& .MuiChip-label": {
+                              paddingRight: "4px",
+                            },
+                          }}
+                          onDelete={() => onRoleDeleteChip(index, "currency")}
+                          label={value.name}
+                          variant="outlined"
+                          onMouseDown={(event) => {
+                            event.stopPropagation();
+                          }}
+                          style={{
+                            marginLeft: "5px",
+                            borderRadius: "2px",
+                            backgroundColor: "rgb(230, 230, 230)",
+                            color: "rgb(51, 51, 51)",
+                            border: "none",
+                            fontSize: "12px",
+                            height: "21px",
+                          }}
+                          deleteIcon={
+                            <div className="delete-icon">
+                              <DeleteIcon />
+                            </div>
+                          }
+                        />
+                      </Stack>
+                    ))
+                  ) : (
+                    <div className="placeholder">Currency</div>
+                  )}
+                  {selected.length > 0 && (
+                    <div
+                      className="close-icon"
+                      onMouseDown={(event) => {
+                        event.stopPropagation();
+                      }}
+                      onClick={() => {
+                        onMultiDeleteClick("currency");
+                      }}
+                    >
+                      <CloseIcon />
+                    </div>
+                  )}
+
+                  <div className="divider">
+                    <Divider
+                      orientation="vertical"
+                      style={{ color: "#0d0d0d" }}
+                    />
+                  </div>
+                </Box>
+              )}
+              MenuProps={MenuProps}
+              displayEmpty
+              inputProps={{
+                "aria-label": "Without label",
+                "aria-placeholder": "HI",
+                style: { paddingRight: "0px" },
+              }}
+              size="small"
+              style={{ paddingRight: "0px" }}
+            >
+              <div>
+                {currencyFilter
+                  .filter(
+                    (role) =>
+                      !jobPostsDetails.ReduxSelectedCurrencyOptions.some(
+                        (option) => option.id === role.id
+                      )
+                  )
+                  .map((role) => (
+                    <MenuItem
+                      key={role.id}
+                      value={role.id}
+                      style={getStyles(role.id, role.name, theme)}
+                      onClick={() => onOptionClick(role, "currency")}
+                    >
+                      {role.name}
+                    </MenuItem>
+                  ))}
+              </div>
+            </Select>
+          </FormControl>
+        </div>
+
         {/* Min Base Pay Filteer Start*/}
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -624,7 +797,8 @@ const Filters = ({ filterJobPosts }) => {
                           jobPostsDetails.ReduxSelectedRemoteOptions,
                           jobPostsDetails.ReduxSelectedLocationOptions,
                           "",
-                          jobPostsDetails.ReduxCompanyName
+                          jobPostsDetails.ReduxCompanyName,
+                          jobPostsDetails.ReduxSelectedCurrencyOptions
                         );
                       }}
                     >
@@ -706,7 +880,8 @@ const Filters = ({ filterJobPosts }) => {
                           jobPostsDetails.ReduxSelectedRemoteOptions,
                           jobPostsDetails.ReduxSelectedLocationOptions,
                           jobPostsDetails.ReduxSelectedBasePay,
-                          jobPostsDetails.ReduxCompanyName
+                          jobPostsDetails.ReduxCompanyName,
+                          jobPostsDetails.ReduxSelectedCurrencyOptions
                         );
                       }}
                     >
@@ -766,7 +941,8 @@ const Filters = ({ filterJobPosts }) => {
                 jobPostsDetails.ReduxSelectedRemoteOptions,
                 jobPostsDetails.ReduxSelectedLocationOptions,
                 jobPostsDetails.ReduxSelectedBasePay,
-                e.target.value
+                e.target.value,
+                jobPostsDetails.ReduxSelectedCurrencyOptions
               );
             }}
           />
