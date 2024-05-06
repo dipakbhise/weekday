@@ -25,7 +25,7 @@ const HomePage = (props) => {
 
   useEffect(() => {
     // fetch joblisting from api at initial time when their is no data
-    jobPostsDetails.jobPosts.length === 0 && fetchJobLists(100, 0, true);
+    jobPostsDetails.jobPosts.length === 0 && fetchJobLists(50, 0, true);
   }, []);
 
   const fetchJobLists = async (limit, offset, initial) => {
@@ -84,7 +84,7 @@ const HomePage = (props) => {
         !loading &&
         jobPostsDetails.pageNumber != jobPostsDetails.pageNumber + 1
       ) {
-        fetchJobLists(100, jobPostsDetails.pageNumber + 1);
+        fetchJobLists(50, jobPostsDetails.pageNumber + 1);
       }
     }
   };
@@ -210,14 +210,14 @@ const HomePage = (props) => {
               <JobCard post={jobPost} key={index} />
             ))
           : jobPostsDetails.filteredJobPosts.length < 10
-          ? Array.from({ length: 10 }).map((_, index) => (
-              <div key={index} style={{ margin: "10px 0px" }}>
-                <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+          ? Array.from({ length: 100 }).map((_, index) => (
+              <div className="skeleton">
+
               </div>
             ))
-          : Array.from({ length: 10 }).map((_, index) => (
-              <div key={index} style={{ margin: "10px 0px" }}>
-                <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+          : Array.from({ length: 100 }).map((_, index) => (
+              <div>
+
               </div>
             ))}
       </div>
@@ -233,6 +233,31 @@ const HomePage = (props) => {
           width: 95%;
           margin: auto;
         }
+
+        .skeleton {
+          min-width: 360px !important;
+          min-height: 565px !important;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+          padding: 5px !important;
+          border-radius: 20px !important;
+          margin: 10px !important;
+          background: rgba(0, 0, 0, 0.11) !important;
+          {/* transform: scale(1, 0.60); */}
+          {/* transform-origin: 0 15%; */}
+          animation: skeletonAnimation 2s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes skeletonAnimation {
+        0% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0.6;
+        }
+      }
       `}</style>
     </>
   );
